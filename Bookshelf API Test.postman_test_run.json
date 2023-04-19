@@ -1,0 +1,513 @@
+{
+	"id": "c75c1dda-a1cf-4899-b35f-229c50b30bd9",
+	"name": "Bookshelf API Test",
+	"timestamp": "2023-04-19T08:55:22.209Z",
+	"collection_id": "0-e9e2dc8c-d946-44a8-9ca2-cd42133f6d18",
+	"folder_id": 0,
+	"environment_id": "48f9baf1-dc50-42c1-89d8-277b1901e96d",
+	"totalPass": 26,
+	"totalFail": 19,
+	"results": [
+		{
+			"id": "95981795-0be9-4c58-8109-2f21e44c7b19",
+			"name": "[Mandatory] Add Book With Complete Data",
+			"url": "http://localhost:9000/books",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"status code should be 201": false,
+				"response header Content-Type should be application/json": true,
+				"response body should be an object": true,
+				"response body should have correct property and value": false,
+				"response body data should contain bookId": false
+			},
+			"testPassFailCounts": {
+				"status code should be 201": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should be an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should have correct property and value": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response body data should contain bookId": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"status code should be 201": false,
+					"response header Content-Type should be application/json": true,
+					"response body should be an object": true,
+					"response body should have correct property and value": false,
+					"response body data should contain bookId": false
+				}
+			]
+		},
+		{
+			"id": "dfa39a97-ce8a-4e3a-b6fa-8aaad1ca0f56",
+			"name": "[Mandatory] Add Book With Finished Reading",
+			"url": "http://localhost:9000/books",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"status code should be 201": false,
+				"response header Content-Type should be application/json": true,
+				"response body should be an object": true,
+				"response body should have correct property and value": false,
+				"response body data should contain bookId": false
+			},
+			"testPassFailCounts": {
+				"status code should be 201": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should be an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should have correct property and value": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response body data should contain bookId": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"status code should be 201": false,
+					"response header Content-Type should be application/json": true,
+					"response body should be an object": true,
+					"response body should have correct property and value": false,
+					"response body data should contain bookId": false
+				}
+			]
+		},
+		{
+			"id": "f70be095-e20f-46da-8af3-06a430ebf576",
+			"name": "[Mandatory] Add Book Without Name",
+			"url": "http://localhost:9000/books",
+			"time": 11,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"status code should be 400": true,
+				"response header Content-Type should be application/json": true,
+				"response body should be an object": true,
+				"response body should have correct property and value": true
+			},
+			"testPassFailCounts": {
+				"status code should be 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should be an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should have correct property and value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"status code should be 400": true,
+					"response header Content-Type should be application/json": true,
+					"response body should be an object": true,
+					"response body should have correct property and value": true
+				}
+			]
+		},
+		{
+			"id": "cece9e7d-f25e-4209-8b0f-74b42ac6e9a7",
+			"name": "[Mandatory] Add Book with Page Read More Than Page Count",
+			"url": "http://localhost:9000/books",
+			"time": 6,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"status code should be 400": true,
+				"response header Content-Type should be application/json": true,
+				"response body should be an object": true,
+				"response body should have correct property and value": false
+			},
+			"testPassFailCounts": {
+				"status code should be 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should be an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should have correct property and value": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"status code should be 400": true,
+					"response header Content-Type should be application/json": true,
+					"response body should be an object": true,
+					"response body should have correct property and value": false
+				}
+			]
+		},
+		{
+			"id": "8f6a62a5-be18-48b2-818f-1e1041cf0b3f",
+			"name": "[Mandatory] Get All Books",
+			"url": "http://localhost:9000/books",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"status code should be 200": true,
+				"response header Content-Type should be application/json": true,
+				"response body should be an object": true,
+				"response body object should have correct property and value": true,
+				"response body data object should have a array books and contains two items": false,
+				"the books should have contains only id, name, and publisher property": false
+			},
+			"testPassFailCounts": {
+				"status code should be 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should be an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body object should have correct property and value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body data object should have a array books and contains two items": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the books should have contains only id, name, and publisher property": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"status code should be 200": true,
+					"response header Content-Type should be application/json": true,
+					"response body should be an object": true,
+					"response body object should have correct property and value": true,
+					"response body data object should have a array books and contains two items": false,
+					"the books should have contains only id, name, and publisher property": false
+				}
+			]
+		},
+		{
+			"id": "7b38a5ca-9fcb-4b39-8bda-ffafcd80e355",
+			"name": "[Mandatory] Get Detail Books With Correct Id",
+			"url": "http://localhost:9000/books/9AxT6mU4sVY3phhb",
+			"time": 4,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"response code should be 200": false,
+				"response header Content-Type should be application/json": true,
+				"response body should an object": true,
+				"response body object should contain correct property and value": false,
+				"response body data object should contain book object": false,
+				"book object should contain correct property and value": false
+			},
+			"testPassFailCounts": {
+				"response code should be 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body object should contain correct property and value": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response body data object should contain book object": {
+					"pass": 0,
+					"fail": 1
+				},
+				"book object should contain correct property and value": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"response code should be 200": false,
+					"response header Content-Type should be application/json": true,
+					"response body should an object": true,
+					"response body object should contain correct property and value": false,
+					"response body data object should contain book object": false,
+					"book object should contain correct property and value": false
+				}
+			]
+		},
+		{
+			"id": "9076c30a-7825-4b56-9f58-a9382c3817f2",
+			"name": "[Mandatory] Get Detail Finished Book",
+			"url": "http://localhost:9000/books/npI4aMz1Lj7bLB_u",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"response code should be 200": false,
+				"response header Content-Type should be application/json": true,
+				"response body should an object": true,
+				"response body object should contain correct property and value": false,
+				"response body data object should contain book object": false,
+				"book object should contain correct property and value": false
+			},
+			"testPassFailCounts": {
+				"response code should be 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body object should contain correct property and value": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response body data object should contain book object": {
+					"pass": 0,
+					"fail": 1
+				},
+				"book object should contain correct property and value": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"response code should be 200": false,
+					"response header Content-Type should be application/json": true,
+					"response body should an object": true,
+					"response body object should contain correct property and value": false,
+					"response body data object should contain book object": false,
+					"book object should contain correct property and value": false
+				}
+			]
+		},
+		{
+			"id": "f6d1d479-a19c-482b-9089-8191489cd2aa",
+			"name": "[Mandatory] Get Detail Books With Invalid Id",
+			"url": "http://localhost:9000/books/xxxxx",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"response code should be 404": true,
+				"response header Content-Type should be application/json": true,
+				"response body should an object": true,
+				"response body object should contain correct property and value": true
+			},
+			"testPassFailCounts": {
+				"response code should be 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body object should contain correct property and value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"response code should be 404": true,
+					"response header Content-Type should be application/json": true,
+					"response body should an object": true,
+					"response body object should contain correct property and value": true
+				}
+			]
+		},
+		{
+			"id": "43b23adb-60b8-4133-9fe1-5c66ac563e95",
+			"name": "[Mandatory] Update Book With Complete Data",
+			"url": "http://localhost:9000/books/9AxT6mU4sVY3phhb",
+			"time": 5,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"status code should be 200": false,
+				"response header Content-Type should be application/json": true,
+				"response body should be an object": true,
+				"response body should have correct property and value": false,
+				"when get detail books": true
+			},
+			"testPassFailCounts": {
+				"status code should be 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response header Content-Type should be application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should be an object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body should have correct property and value": {
+					"pass": 0,
+					"fail": 1
+				},
+				"when get detail books": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"status code should be 200": false,
+					"response header Content-Type should be application/json": true,
+					"response body should be an object": true,
+					"response body should have correct property and value": false,
+					"when get detail books": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 69,
+	"collection": {
+		"requests": [
+			{
+				"id": "95981795-0be9-4c58-8109-2f21e44c7b19",
+				"method": "POST"
+			},
+			{
+				"id": "dfa39a97-ce8a-4e3a-b6fa-8aaad1ca0f56",
+				"method": "POST"
+			},
+			{
+				"id": "f70be095-e20f-46da-8af3-06a430ebf576",
+				"method": "POST"
+			},
+			{
+				"id": "cece9e7d-f25e-4209-8b0f-74b42ac6e9a7",
+				"method": "POST"
+			},
+			{
+				"id": "8f6a62a5-be18-48b2-818f-1e1041cf0b3f",
+				"method": "GET"
+			},
+			{
+				"id": "7b38a5ca-9fcb-4b39-8bda-ffafcd80e355",
+				"method": "GET"
+			},
+			{
+				"id": "9076c30a-7825-4b56-9f58-a9382c3817f2",
+				"method": "GET"
+			},
+			{
+				"id": "f6d1d479-a19c-482b-9089-8191489cd2aa",
+				"method": "GET"
+			},
+			{
+				"id": "43b23adb-60b8-4133-9fe1-5c66ac563e95",
+				"method": "PUT"
+			}
+		]
+	}
+}
