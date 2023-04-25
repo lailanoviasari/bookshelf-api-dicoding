@@ -35,49 +35,38 @@ const addBooks = (request, h) => {
     updatedAt,
   };
 
-  books.push(newBooks);
-
-  const noName = books.filter((book) => book.name === undefined).length > 0;
-  const moreReadPage = books.filter((book) => book.readPage > book.pageCount).length > 0;
-
-  if (!noName && !moreReadPage) {
-    const response = h.response({
-      status: 'success',
-      message: 'Buku berhasil ditambahkan',
-      data: {
-        bookId: id,
-      },
-    });
-
-    // console.log(books.filter((book) => book.id === id));
-
-    response.code(201);
-    return response;
-  }
-
-  if (noName) {
+  if (!name) {
     const response = h.response({
       status: 'fail',
       message: 'Gagal menambahkan buku. Mohon isi nama buku',
     });
 
-    books.splice(2, 1);
-
     response.code(400);
     return response;
   }
 
-  if (moreReadPage) {
+  if (readPage > pageCount) {
     const response = h.response({
       status: 'fail',
       message: 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
     });
 
-    books.splice(2, 1);
-
     response.code(400);
     return response;
   }
+
+  books.push(newBooks);
+  const response = h.response({
+    status: 'success',
+    message: 'Buku berhasil ditambahkan',
+    data: {
+      bookId: id,
+    },
+  });
+
+  // console.log(books.filter((book) => book.id === id));
+  response.code(201);
+  return response;
 };
 
 const getAllBooksWith3Property = (request, h) => {
