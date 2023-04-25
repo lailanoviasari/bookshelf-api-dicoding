@@ -117,7 +117,7 @@ const getAllBooksWith3Property = (request, h) => {
 
   if (finished !== undefined) {
     if (finished === '0') {
-      const bukuUnfinished = books.filter((book) => book.finished === '0');
+      const bukuUnfinished = books.filter((book) => book.finished === false);
 
       return {
         status: 'success',
@@ -130,7 +130,7 @@ const getAllBooksWith3Property = (request, h) => {
         },
       };
     } if (finished === '1') {
-      const bukufinished = books.filter((book) => book.finished === '1');
+      const bukufinished = books.filter((book) => book.finished === true);
 
       return {
         status: 'success',
