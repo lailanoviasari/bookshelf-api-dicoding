@@ -1,5 +1,5 @@
 const books = require('./books');
-const { addBooks, getAllBooks, getDetailBook, editBookById, deleteBookById } = require('./handler');
+const { addBooks, getAllBooksWith3Property, getDetailBook, editBookById, deleteBookById } = require('./handler');
 
 const routes = [
     {
@@ -10,7 +10,7 @@ const routes = [
     {
         method: 'GET',
         path: '/books',
-        handler: getAllBooks,
+        handler: getAllBooksWith3Property,
     },
     {
         method: 'GET',

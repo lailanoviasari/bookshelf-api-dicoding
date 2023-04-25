@@ -39,9 +39,6 @@ const addBooks = (request, h) => {
     const noName = books.filter((book) => book.name === undefined).length > 0;
     const moreReadPage = books.filter((book) => book.readPage > book.pageCount).length > 0;
 
-    console.log(books.filter((book) => book.id === id));
-    console.log(moreReadPage);
-
     if (!noName && !moreReadPage) {
         const response = h.response({
             status: 'success',
@@ -50,6 +47,8 @@ const addBooks = (request, h) => {
                 bookId: id,
             }
         });
+
+        //console.log(books.filter((book) => book.id === id));
 
         response.code(201);
         return response;
@@ -61,6 +60,8 @@ const addBooks = (request, h) => {
             message: 'Gagal menambahkan buku. Mohon isi nama buku'
         })
 
+        books.splice(2,1);
+
         response.code(400);
         return response;
     }
@@ -71,25 +72,30 @@ const addBooks = (request, h) => {
             message: "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount"
         })
 
+        books.splice(2,1);
+
         response.code(400);
         return response;
     }
 };
 
-const getAllBooks = () => ({
+const getAllBooksWith3Property = () => ({
     status: 'success',
     data: {
-        books,
+        books: books.map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher
+        }))
     },
-});
+})
 
 const getDetailBook = (request, h) => {
-    const { id } = request.params;
+    const { bookId } = request.params;
 
-    const book = books.filter((b) => b.id === id)[0];
+    const book = books.filter((book) => book.id === bookId)[0];
 
     if (book !== undefined) {
-        response.code(200);
         return {
             status: 'success',
             data: {
@@ -108,7 +114,7 @@ const getDetailBook = (request, h) => {
 };
 
 const editBookById = (request, h) => {
-    const { id } = request.params;
+    const { bookId } = request.params;
 
     const {
         name,
@@ -123,17 +129,19 @@ const editBookById = (request, h) => {
 
     const updatedAt = new Date().toISOString();
 
-    const index = books.findIndex((book) => book.id === id);
+    const finished = pageCount === readPage ? true : false;
 
+    const index = books.findIndex((book) => book.id === bookId);
+    const noName = books.filter((book) => book.name === undefined).length > 0;
+    const moreReadPage = books.filter((book) => book.readPage > book.pageCount).length > 0;
 
-    if (pageCount === readPage) {
-        const finished = true;
-    } else {
-        const finished = false;
-    }
+    console.log(books.filter((book) => book.name === undefined));
 
+    console.log('index : ', index);
 
-    if (index !== -1) {
+    console.log('noName : ', noName);
+
+    if (!noName && !moreReadPage) {
         books[index] = {
             ...books[index],
             name,
@@ -157,7 +165,7 @@ const editBookById = (request, h) => {
         return response;
     }
 
-    if (name === null) {
+    if (noName) {
         const response = h.response({
             status: 'fail',
             message: 'Gagal memperbarui buku. Mohon isi nama buku'
@@ -167,7 +175,7 @@ const editBookById = (request, h) => {
         return response;
     }
 
-    if (readPage > pageCount) {
+    if (moreReadPage) {
         const response = h.response({
             status: "fail",
             message: "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount"
@@ -210,4 +218,4 @@ const deleteBookById = (request, h) => {
     })
 }
 
-module.exports = { addBooks, getAllBooks, getDetailBook, editBookById, deleteBookById };
+module.exports = { addBooks, getAllBooksWith3Property, getDetailBook, editBookById, deleteBookById };
