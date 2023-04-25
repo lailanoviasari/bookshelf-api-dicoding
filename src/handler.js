@@ -86,21 +86,8 @@ const getAllBooksWith3Property = (request, h) => {
   /* const bukuReading  */
 
   if (reading !== undefined) {
-    if (reading === 0) {
-      const bukuUnReading = books.filter((book) => book.reading === 0);
-
-      return {
-        status: 'success',
-        data: {
-          books: bukuUnReading.map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher,
-          })),
-        },
-      };
-    } if (reading === 1) {
-      const bukuReading = books.filter((book) => book.reading === 1);
+    if (reading === '1') {
+      const bukuReading = books.filter((book) => book.reading === true);
 
       return {
         status: 'success',
@@ -112,12 +99,25 @@ const getAllBooksWith3Property = (request, h) => {
           })),
         },
       };
+    } if (reading === '0') {
+      const bukuUnReading = books.filter((book) => book.reading === true);
+
+      return {
+        status: 'success',
+        data: {
+          books: bukuUnReading.map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
+        },
+      };
     }
   }
 
   if (finished !== undefined) {
-    if (finished === 0) {
-      const bukuUnfinished = books.filter((book) => book.finished === 0);
+    if (finished === '0') {
+      const bukuUnfinished = books.filter((book) => book.finished === '0');
 
       return {
         status: 'success',
@@ -129,8 +129,8 @@ const getAllBooksWith3Property = (request, h) => {
           })),
         },
       };
-    } if (finished === 1) {
-      const bukufinished = books.filter((book) => book.finished === 1);
+    } if (finished === '1') {
+      const bukufinished = books.filter((book) => book.finished === '1');
 
       return {
         status: 'success',
