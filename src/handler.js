@@ -60,7 +60,7 @@ const addBooks = (request, h) => {
             message: 'Gagal menambahkan buku. Mohon isi nama buku'
         })
 
-        books.splice(2,1);
+        books.splice(2, 1);
 
         response.code(400);
         return response;
@@ -72,23 +72,102 @@ const addBooks = (request, h) => {
             message: "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount"
         })
 
-        books.splice(2,1);
+        books.splice(2, 1);
 
         response.code(400);
         return response;
     }
 };
 
-const getAllBooksWith3Property = () => ({
-    status: 'success',
-    data: {
-        books: books.map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher
-        }))
-    },
-})
+const getAllBooksWith3Property = (request, h) => {
+
+    const { reading, finished, name } = request.query;
+
+    /* const bukuReading  */
+
+    if (reading !== undefined) {
+        if (reading == 0) {
+            const bukuUnReading = books.filter((book) => book.reading == 0);
+
+            return {
+                status: 'success',
+                data: {
+                    books: bukuUnReading.map((book) => ({
+                        id: book.id,
+                        name: book.name,
+                        publisher: book.publisher
+                    }))
+                },
+            }
+        } else if (reading == 1) {
+            const bukuReading = books.filter((book) => book.reading == 1);
+
+            return {
+                status: 'success',
+                data: {
+                    books: bukuReading.map((book) => ({
+                        id: book.id,
+                        name: book.name,
+                        publisher: book.publisher
+                    }))
+                },
+            }
+        }
+    }
+
+    if (finished !== undefined) {
+        if (finished == 0) {
+            const bukuUnfinished = books.filter((book) => book.finished == 0);
+
+            return {
+                status: 'success',
+                data: {
+                    books: bukuUnfinished.map((book) => ({
+                        id: book.id,
+                        name: book.name,
+                        publisher: book.publisher
+                    }))
+                },
+            }
+        } else if (finished == 1) {
+            const bukufinished = books.filter((book) => book.finished == 1);
+
+            return {
+                status: 'success',
+                data: {
+                    books: bukufinished.map((book) => ({
+                        id: book.id,
+                        name: book.name,
+                        publisher: book.publisher
+                    }))
+                },
+            }
+        }
+    }
+
+    if (name !== undefined) {
+        const bukuName = books.map((book) => book.name)
+        const a = books.filter((book) => book.name == [name])
+
+        console.log(bukuName)
+        console.log([name]);
+        console.log(a);
+    }
+
+    const response = h.response({
+        status: 'success',
+        data: {
+            books: books.map((book) => ({
+                id: book.id,
+                name: book.name,
+                publisher: book.publisher
+            }))
+        },
+    })
+
+    response.code(200);
+    return response;
+}
 
 const getDetailBook = (request, h) => {
     const { bookId } = request.params;
@@ -132,16 +211,12 @@ const editBookById = (request, h) => {
     const finished = pageCount === readPage ? true : false;
 
     const index = books.findIndex((book) => book.id === bookId);
-    const noName = books.filter((book) => book.name === undefined).length > 0;
-    const moreReadPage = books.filter((book) => book.readPage > book.pageCount).length > 0;
 
-    console.log(books.filter((book) => book.name === undefined));
+    const noName = name === undefined ? true : false;
 
-    console.log('index : ', index);
+    const moreReadPage = readPage > pageCount ? true : false;
 
-    console.log('noName : ', noName);
-
-    if (!noName && !moreReadPage) {
+    if (!noName && !moreReadPage && (index !== -1)) {
         books[index] = {
             ...books[index],
             name,
@@ -196,11 +271,11 @@ const editBookById = (request, h) => {
 }
 
 const deleteBookById = (request, h) => {
-    const { id } = request.params;
+    const { bookId } = request.params;
 
-    const index = books.findIndex((book) => book.id === id);
+    const index = books.findIndex((book) => book.id === bookId);
 
-    if (index !== id) {
+    if (index !== -1) {
         books.splice(index, 1);
 
         const response = h.response({
@@ -214,8 +289,11 @@ const deleteBookById = (request, h) => {
 
     const response = h.response({
         status: 'fail',
-        message: 'Buku gagal dihapus, Id tidak ditemukan',
+        message: 'Buku gagal dihapus. Id tidak ditemukan',
     })
+
+    response.code(404);
+    return response;
 }
 
 module.exports = { addBooks, getAllBooksWith3Property, getDetailBook, editBookById, deleteBookById };
